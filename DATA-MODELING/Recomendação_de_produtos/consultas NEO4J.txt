@@ -1,0 +1,22 @@
+##Listando todos os relacionamentos entre clientes, contatos e produtos
+MATCH (c:Cliente)-[r1:TEM_CONTATO]->(ct:Contato)
+MATCH (c)-[r2:RECOMENDADO]->(p:Produto)
+RETURN c, r1, ct, r2, p
+
+
+##Busca contato especifico pelo ID
+MATCH (ct:Contato {id_contato: "1"})
+RETURN ct
+
+##Busca produto especifico pelo ID
+MATCH (p:Produto {id_produto: "1"})
+RETURN p
+
+##Listar todos produtos
+MATCH (p:Produto)
+RETURN p
+
+##Listar todos clientes
+MATCH (c:Cliente)
+RETURN c
+

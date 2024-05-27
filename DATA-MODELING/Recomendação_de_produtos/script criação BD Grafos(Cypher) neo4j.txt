@@ -1,0 +1,31 @@
+// Criação de clientes
+CREATE (c1:Cliente {cpf_cliente: "122222222291", nome_completo: "Leonardo Dias"}),
+       (c2:Cliente {cpf_cliente: "122222222292", nome_completo: "Maria Oliveira"})
+WITH c1, c2
+
+// Criação de contatos
+CREATE (ct1:Contato {id_contato: "1", telefone: "1234-5678", email_contato: "leo.dias@gmail.com"}),
+       (ct2:Contato {id_contato: "2", telefone: "1234-5678", email_contato: "maria@gmail.com"})
+WITH c1, c2, ct1, ct2
+
+// Criação de produtos recomendados
+CREATE (p1:Produto {id_produto: "1", nome: "Empréstimo Pessoal", descricao: "Empréstimo com taxa de 1.5% a.m."}),
+       (p2:Produto {id_produto: "2", nome: "Cartão de Crédito", descricao: "Limite de até R$ 5,000.00"})
+WITH c1, c2, ct1, ct2, p1, p2
+
+// Relacionamentos entre clientes e contatos
+MATCH (c1:Cliente {cpf_cliente: "122222222291"}), (ct1:Contato {id_contato: "1"})
+CREATE (c1)-[:TEM_CONTATO]->(ct1)
+WITH c1, c2, ct2, p1, p2
+
+MATCH (c2:Cliente {cpf_cliente: "122222222292"}), (ct2:Contato {id_contato: "2"})
+CREATE (c2)-[:TEM_CONTATO]->(ct2)
+WITH c1, c2, p1, p2
+
+// Relacionamentos entre clientes e produtos recomendados
+MATCH (c1:Cliente {cpf_cliente: "122222222291"}), (p1:Produto {id_produto: "1"})
+CREATE (c1)-[:RECOMENDADO]->(p1)
+WITH c2, p2
+
+MATCH (c2:Cliente {cpf_cliente: "122222222292"}), (p2:Produto {id_produto: "2"})
+CREATE (c2)-[:RECOMENDADO]->(p2)
