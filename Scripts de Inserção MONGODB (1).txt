@@ -1,0 +1,68 @@
+###CRIANDO DOCKER E DATABASE###
+docker pull ivangancev/mongo:latest
+docker container start MyMongo
+docker container exec -it MyMongo bash
+docker run --name MyMongo -it ivangancev/mongo bash
+mongod -f /etc/mongod.conf &
+mongo sh
+use dbAtividade
+docker exec -it mymongo mongo dbAtividade
+
+###COLLECTION PRODUTOS###
+use dbAtividade;
+db.createCollection("Produtos");
+db.Produtos.insertOne({Codigo: "001",  Nome: "Produto A",  Modelo: "Modelo X",  Fabricante: "Fabricante Y",  Cor: ["Vermelho", "Azul"],  Tam: ["P", "M", "G"]});
+
+###COLLECTION CLIENTES###
+db.createCollection("Clientes");
+db.Clientes.insertOne({  CPF: "123.456.789-00",  Nome: "Cliente A",  Endereco: "Rua Exemplo, 123",  CEP: "12345-678",  Email: "clienteA@exemplo.com",  Telefones: ["1234-5678", "9876-5432"]});
+
+###COLLECTION PEDIDOS###
+db.createCollection("Pedidos");
+db.Pedidos.insertOne({  Cliente: "123.456.789-00",  Endereco: "Rua Exemplo, 123",  CEP: "12345-678",  Itens: [    {      Produto: "001",      Quantidade: 2    }  ],  Valor_pago: 100.00});
+
+###INSERT COLLECTION PRODUTOS ###
+use dbAtividade;
+db.Produtos.insertOne({Nome: "Tenis A",  Modelo: "MS-150",  Fabricante: "Nike",  Cor: ["Verde", "Amarelo", "Azul", "Preto"],  Tam: [36, 37, 38, 39, 40, 41, 42]});
+db.Produtos.insertOne({Nome: "Tenis B",  Modelo: "MS-160",  Fabricante: "Nike",  Cor: ["Verde", "Amarelo", "Azul", "Preto"],  Tam: [36, 37, 38, 39, 40, 41, 42]});
+db.Produtos.insertOne({ Nome: "Tenis C",  Modelo: "SX-210",  Fabricante: "Adidas",  Cor: ["Verde", "Amarelo", “Azul", "Preto"],  Tam: [36, 37, 38, 39, 40, 41, 42]});
+db.Produtos.insertOne({Nome: "Tenis D",  Modelo: "SX-220",  Fabricante: "Adidas",  Cor: ["Verde", "Amarelo", "Azul", "Preto"],  Tam: [36, 37, 38, 39, 40, 41, 42]});
+db.Produtos.insertOne({  Nome: "Tenis E",  Modelo: "MX-150",  Fabricante: "Nike",  Cor: ["Verde", "Amarelo", "Azul", "Preto"],  Tam: [36, 37, 38, 39, 40, 41, 42]});
+db.Produtos.insertOne({  Nome: "Tenis F",  Modelo: "MX-160",  Fabricante: "Nike",  Cor: ["Verde", "Amarelo", "Azul", "Preto"],  Tam: [36, 37, 38, 39, 40, 41, 42]});
+db.Produtos.insertOne({  Nome: "Tenis G",  Modelo: "SF-210",  Fabricante: "Adidas",  Cor: ["Verde", "Amarelo", "Azul", "Preto"],  Tam: [36, 37, 38, 39, 40, 41, 42]});
+db.Produtos.insertOne({  Nome: "Tenis H",  Modelo: "SF-220",  Fabricante: "Adidas",  Cor: ["Verde", "Laranja", "Azul", "Preto"],  Tam: [34, 35, 36, 37, 38]});
+db.Produtos.insertOne({  Nome: "Tenis I",  Modelo: "MF-150",  Fabricante: "Nike",  Cor: ["Roxo", "Amarelo", "Azul", "Preto"],  Tam: [36, 37, 38, 39, 40, 41, 42]});
+db.Produtos.insertOne({  Nome: "Tenis J",  Modelo: "MF-160",  Fabricante: "Nike",  Cor: ["Rosa", "Amarelo", "Azul", "Preto"],  Tam: [35, 36, 37, 38, 39, 40]});
+
+
+###INSERT COLLECTION CLIENTES###
+use dbAtividade;
+db.Clientes.insertOne({  CPF: "123.456.789-01",  Nome: "Cliente B",  Endereco: "Rua Um, 101",  CEP: "12345-101",  Email: "clienteB@exemplo.com",  Telefones: ["1234-5678", "9876-5432"]});
+db.Clientes.insertOne({  CPF: "123.456.789-02",  Nome: "Cliente C",  Endereco: "Rua Dois, 202",  CEP: "12345-202",  Email: "clienteC@exemplo.com",  Telefones: ["1234-5679", "9876-5433"]});
+db.Clientes.insertOne({  CPF: "123.456.789-03",  Nome: "Cliente D",  Endereco: "Rua Três, 303",  CEP: "12345-303",  Email: "clienteD@exemplo.com",  Telefones: ["1234-5680", "9876-5434"]});
+db.Clientes.insertOne({  CPF: "123.456.789-04",  Nome: "Cliente E",  Endereco: "Rua Quatro, 404",  CEP: "12345-404",  Email: "clienteE@exemplo.com",  Telefones: ["1234-5681", "9876-5435"]});
+db.Clientes.insertOne({  CPF: "123.456.789-05",  Nome: "Cliente F",  Endereco: "Rua Cinco, 505",  CEP: "12345-505",  Email: "clienteF@exemplo.com",  Telefones: ["1234-5682", "9876-5436"]});
+db.Clientes.insertOne({  CPF: "123.456.789-06",  Nome: "Cliente G",  Endereco: "Rua Seis, 606",  CEP: "12345-606",  Email: "clienteG@exemplo.com",  Telefones: ["1234-5683", "9876-5437"]});
+db.Clientes.insertOne({  CPF: "123.456.789-07",  Nome: "Cliente H",  Endereco: "Rua Sete, 707",  CEP: "12345-707",  Email: "clienteH@exemplo.com",  Telefones: ["1234-5684", “9876-5438"]});
+db.Clientes.insertOne({  CPF: "123.456.789-08",  Nome: "Cliente I",  Endereco: "Rua Oito, 808",  CEP: "12345-808",  Email: "clienteI@exemplo.com",  Telefones: ["1234-5685", "9876-5439"]});
+db.Clientes.insertOne({  CPF: "123.456.789-09",  Nome: "Cliente J",  Endereco: "Rua Nove, 909",  CEP: "12345-909",  Email: "clienteJ@exemplo.com",  Telefones: ["1234-5686", "9876-5440"]});
+db.Clientes.insertOne({  CPF: "123.456.789-10",  Nome: "Cliente K",  Endereco: "Rua Dez, 1010",  CEP: "12345-1010",  Email: "clienteK@exemplo.com",  Telefones: ["1234-5687", "9876-5441"]}); 
+
+###INSERT COLLECTION PEDIDOS###
+use dbAtividade;
+db.Pedidos.insertOne({  Cliente: "123.456.789-01",  Endereco: "Rua Um, 101",  CEP: "12345-101",  Itens: [    {Produto: "001",      Quantidade: 1    },    {      Produto: "002",      Quantidade: 2    }  ],  Valor_pago: 150.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-02",  Endereco: "Rua Dois, 202",  CEP: "12345-202",  Itens: [    {Produto: "003",      Quantidade: 3    },    {      Produto: "004",      Quantidade: 1    }  ],  Valor_pago: 200.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-03",  Endereco: "Rua Três, 303",  CEP: "12345-303",  Itens: [    {Produto: "005",      Quantidade: 2    }  ],  Valor_pago: 100.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-04",  Endereco: "Rua Quatro, 404",  CEP: "12345-404",  Itens: [    {Produto: "006",      Quantidade: 1    }  ],  Valor_pago: 75.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-05",  Endereco: "Rua Cinco, 505",  CEP: "12345-505",  Itens: [    {Produto: "007",      Quantidade: 4    },    {      Produto: "008",      Quantidade: 1    }  ],  Valor_pago: 250.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-06",  Endereco: "Rua Seis, 606",  CEP: "12345-606",  Itens: [    {Produto: "009",      Quantidade: 2    },    {      Produto: "010",      Quantidade: 3    }  ],  Valor_pago: 225.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-07",  Endereco: "Rua Sete, 707",  CEP: "12345-707",  Itens: [    {Produto: "001",      Quantidade: 1    }  ],  Valor_pago: 50.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-08",  Endereco: "Rua Oito, 808",  CEP: "12345-808",  Itens: [    {Produto: "002",      Quantidade: 1    },    {      Produto: "003",      Quantidade: 2    }  ],  Valor_pago: 100.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-09",  Endereco: "Rua Nove, 909",  CEP: "12345-909",  Itens: [    {Produto: "004",      Quantidade: 2    }  ],  Valor_pago: 100.00});
+db.Pedidos.insertOne({  Cliente: "123.456.789-10",  Endereco: "Rua Dez, 1010",  CEP: "12345-1010",  Itens: [    {Produto: "005",      Quantidade: 1    },    {      Produto: "006",      Quantidade: 2    }  ],  Valor_pago: 125.00});
+
+
+###CONSULTANDO COLLECTIONS###
+db.Produtos.find().pretty();
+db.Clientes.find().pretty();
+db.Pedidos.find().pretty();
