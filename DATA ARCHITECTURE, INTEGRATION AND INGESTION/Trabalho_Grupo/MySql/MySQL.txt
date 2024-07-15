@@ -1,0 +1,130 @@
+***Parte 1***
+
+1. docker pull ivangancev/ubuntusql:latest
+
+2. docker run --name MySQL -it ivangancev/ubuntusql:latest bash
+
+3. apt install mysql-server
+
+4. service mysql start
+
+5. mysql
+
+6. create database trabalho;
+
+7. use trabalho;
+
+8. create table produtos(codigo int PRIMARY KEY AUTO_INCREMENT, nome varchar(150), 
+modelo varchar(150), fabricante varchar(150), cor text(150), tam text(150));
+
+9. create table clientes(id_cliente int PRIMARY KEY AUTO_INCREMENT, cpf char(11), 
+nome varchar(150), endereco varchar(150), cep char(8), email varchar(150), 
+telefone text(100));
+
+10. create table pedidos(id_pedido int PRIMARY KEY AUTO_INCREMENT, id_cliente int, 
+endereco varchar(150), cep char(8), itens text(200), valor_pago float, 
+CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)); 
+
+
+***Parte 2***
+
+1. insert into trabalho.produtos (nome, modelo, fabricante, cor, tam) 
+values ('Tenis_A', 'MS-150', 'Nike', 'Verde', '38,40,42,44,46'), 
+('Tenis_B', 'MS-160', 'Nike', 'Azul', '38,40,42,44,46'), 
+('Tenis_C', 'SX-210', 'Adidas', 'Verde', '38,40,42,44,46'), 
+('Tenis_D', 'SX-220', 'Adidas', 'Vermelho', '38,40,42,44,46'),
+('Tenis_E', 'MX-150', 'Nike', 'Amarelo', '38,40,42,44,46'), 
+('Tenis_F', 'MX-160', 'Nike', 'Verde', '38,40,42,44,46'),
+('Tenis_G', 'SF-210', 'Adidas', 'Vermelho', '38,40,42,44,46'), 
+('Tenis_H', 'SF-220', 'Adidas', 'Roxo', '38,40,42,44,46'),
+('Tenis_I', 'MF-150', 'Nike', 'Lilas', '38,40,42,44,46'), 
+('Tenis_J', 'MF-160', 'Nike', 'Vermelho', '38,40,42,44,46');
+
+2. insert into trabalho.clientes (cpf, nome, endereco, cep, email, telefone)
+values ('12345678901', 'Cliente B', 'Rua Um, 101', '12345101', 'clienteB@exemplo.com', '(11)12345678, (11)987654325'),
+('12345678902', 'Cliente C', 'Rua Dois, 202', '12345202', 'clienteC@exemplo.com', '(11)12345679, (11)987654336'),
+('12345678903', 'Cliente D', 'Rua Três, 303', '12345303', 'clienteD@exemplo.com', '(11)12345680, (11)987654347'),
+('12345678904', 'Cliente E', 'Rua Quatro, 404', '12345404', 'clienteE@exemplo.com', '(11)12345681, (11)987654358'),
+('12345678905', 'Cliente F', 'Rua Cinco, 505', '12345505', 'clienteF@exemplo.com', '(11)12345682, (11)987654369'),
+('12345678906', 'Cliente G', 'Rua Seis, 606', '12345606', 'clienteG@exemplo.com', '(11)12345683, (11)987654371'),
+('12345678907', 'Cliente H', 'Rua Sete, 707', '12345707', 'clienteH@exemplo.com', '(11)12345684, (11)987654382'),
+('12345678908', 'Cliente I', 'Rua Oito, 808', '12345808', 'clienteI@exemplo.com', '(11)12345685, (11)987654393'),
+('12345678909', 'Cliente J', 'Rua Nove, 909', '12345909', 'cliente J@exemplo.com', '(11)12345686, (11)987654404'),
+('12345678910', 'Cliente K', 'Rua Dez, 1010', '12341010', 'clienteK@exemplo.com', '(11)12345687, (11)987654415');
+
+3. insert into trabalho.pedidos (id_cliente, endereco, cep, itens, valor_pago)
+values (1, 'Rua Um, 101', '12345101', '[{Produto: 1, Quantidade: 1}, {Produto: 2, Quantidade: 1}]', 150.00),
+(2, 'Rua Dois, 202', '12345202', '[{Produto: 3, Quantidade: 3}, {Produto: 4, Quantidade: 1}]', 200.00),
+(3, 'Rua Três, 303', '12345303', '[{Produto: 5, Quantidade: 2}]', 100.00),
+(4, 'Rua Quatro, 404', '12345404', '[{Produto: 6, Quantidade: 1}]', 75.00),
+(5, 'Rua Cinco, 505', '12345505', '[{Produto: 7, Quantidade: 4}, {Produto: 8, Quantidade: 1}]', 250.00),
+(6, 'Rua Seis, 606', '12345606', '[{Produto: 9, Quantidade: 2}, {Produto: 10, Quantidade: 3}]', 225.00),
+(7, 'Rua Sete, 707', '12345707', '[{Produto: 1, Quantidade: 1}]', 50.00),
+(8, 'Rua Oito, 808', '12345808', '[{Produto: 2, Quantidade: 1}, {Produto: 3, Quantidade: 2}]', 100.00),
+(9, 'Rua Nove, 909', '12345909', '[{Produto: 4, Quantidade: 2}]', 100.00),
+(10, 'Rua Dez, 1010', '12341010', '[{Produto: 5, Quantidade: 1}]', 125.00);
+
+
+***Parte 3***
+
+1. quit
+
+2. exit
+
+3. cd Downloads
+
+4. 
+WINDOWS: docker container cp clientes_20.csv MySQL:/tmp
+MAC/LINUX: docker container cp clientes_20.csv MySQL:\tmp
+
+5. docker container exec -it MySQL bash
+
+6. mysql
+
+7. SET GLOBAL local_infile=true;
+
+8. quit	
+
+9. mysql --local-infile=true -u root -p1
+
+10. use trabalho;
+
+11.  
+LOAD DATA LOCAL INFILE '/tmp/clientes_20.csv' 
+INTO TABLE clientes 
+FIELDS TERMINATED BY ';' 
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS
+(cpf,nome,endereco,cep,email,telefone);
+
+_____________________________________________________________________________________
+
+12. quit
+
+13. exit
+
+14. cd Downloads
+
+15.
+WINDOWS: docker container cp produtos_20.csv MySQL:/tmp
+MAC/LINUX: docker container cp produtos_20.csv MySQL:\tmp
+
+16. docker container exec -it MySQL bash
+
+17. mysql
+
+18. SET GLOBAL local_infile=true;
+
+19. quit
+
+20. mysql --local-infile=true -u root -p1
+
+21. use trabalho;
+
+22.
+LOAD DATA LOCAL INFILE '/tmp/produtos_20.csv' 
+INTO TABLE produtos
+FIELDS TERMINATED BY ';' 
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS
+(nome, modelo, fabricante, cor, tam);
