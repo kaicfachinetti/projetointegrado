@@ -1,0 +1,1 @@
+![Template Nifi](image.png)
