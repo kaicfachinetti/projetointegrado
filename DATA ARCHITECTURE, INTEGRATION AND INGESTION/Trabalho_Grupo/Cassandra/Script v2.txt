@@ -1,0 +1,47 @@
+
+CREATE KEYSPACE lojasapato
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+
+use lojasapato;
+
+CREATE TABLE produtos (id int, nome text, modelo text, fabricante text, cor set<text>,tamanho set<int>,
+PRIMARY KEY (id));
+
+CREATE TABLE clientes (cpf text , nome text, endereco text, cep int, email text, telefone text,
+PRIMARY KEY (cpf));
+
+CREATE TABLE pedidos (id int, cliente text, item int, quantidade int, valor_total decimal,
+PRIMARY KEY (id));
+
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (1,'Tenis A', 'MS-150', 'Nike', {'Verde','Amarelo','Azul','Preto'}, {36,37,38,39,40,41,42}); 
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (2,'Tenis B', 'MS-160', 'Nike', {'Verde','Amarelo','Azul','Preto'}, {36,37,38,39,40,41,42});
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (3,'Tenis C', 'SX-210', 'Adidas', {'Verde','Amarelo','Azul','Preto'}, {36,37,38,39,40,41,42});
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (4,'Tenis D', 'SX-220', 'Adidas', {'Verde','Amarelo','Azul','Preto'}, {36,37,38,39,40,41,42});
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (5,'Tenis E', 'MX-150', 'Nike', {'Verde','Amarelo','Azul','Preto'}, {36,37,38,39,40,41,42});
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (6,'Tenis F', 'MX-160', 'Nike', {'Verde','Amarelo','Azul','Preto'}, {36,37,38,39,40,41,42});
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (7,'Tenis G', 'SF-210', 'Adidas', {'Verde','Amarelo','Azul','Preto'}, {36,37,38,39,40,41,42});
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (8,'Tenis H', 'SF-220', 'Adidas', {'Verde','Laranja','Azul','Preto'}, {34,35,36,37,38});
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (9,'Tenis I', 'MF-150', 'Nike', {'Roxo','Amarelo','Azul','Preto'}, {36,37,38,39,40,41,42});
+insert into produtos (id, nome, modelo, fabricante, cor,tamanho) values (10,'Tenis J', 'MF-160', 'Nike', {'Rosa','Amarelo','Azul','Preto'}, {35,36,37,38,39,40});
+
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('11111111111','Nome 1', 'Rua numero 1 1  Bairro 1  São Paulo  SP', 11111111 ,'email1@email1.com.br','+55 11 11111-1111');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('22222222222','Nome 2', 'Rua numero 2 ,2  Bairro 2  São Paulo  SP', 22222222 ,'email2@email2.com.br','+55 22 2222-2222');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('33333333333','Nome 3', 'Rua numero 3, 3  Bairro 3  São Paulo  SP', 33333333 ,'email3@email3.com.br','+55 33 3333-3333');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('44444444444','Nome 4', 'Rua numero 4 ,4  Bairro 4  São Paulo  SP', 44444444 ,'email4@email4.com.br','+55 44 4444-4444');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('55555555555','Nome 5', 'Rua numero 5 ,5  Bairro 5  São Paulo  SP', 55555555 ,'email5@email5.com.br','+55 55 5555-5555');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('66666666666','Nome 6', 'Rua numero 6 ,6  Bairro 6  São Paulo  SP', 66666666 ,'email6@email6.com.br','+55 66 6666-6666');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('77777777777','Nome 7', 'Rua numero 7 ,7  Bairro 7  São Paulo  SP', 77777777 ,'email7@email7.com.br','+55 77 7777-7777');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('88888888888','Nome 8', 'Rua numero 8 ,8  Bairro 8 São Paulo  SP', 88888888 ,'email8@email8.com.br','+55 88 8888-8888');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('99999999999','Nome 9', 'Rua numero 9 ,9  Bairro 4  São Paulo  SP', 999999999 ,'email9@email9.com.br','+55 999999-9999');
+insert into clientes (cpf, nome, endereco, cep, email, telefone) values ('00000000000','Nome 0', 'Rua numero 0 ,0  Bairro 0  São Paulo  SP', 00000000 ,'email0@email0.com.br','+55 00 0000-0000');
+
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (1, '11111111111',1,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (2, '22222222222',2,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (3, '33333333333',3,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (4, '44444444444',4,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (5, '55555555555',5,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (6, '66666666666',6,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (7, '77777777777',7,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (8, '88888888888',8,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (9, '99999999999',9,2,200);
+insert into pedidos (id, cliente, item, quantidade, valor_total) values (10, '00000000000',0,2,200);
